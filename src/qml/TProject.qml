@@ -28,6 +28,10 @@ Item {
         Project.project = this;
     }
 
+    onCurrentProjectVersionChanged: {
+        Project.load();
+    }
+
     /**
     * Create a new project
     */
@@ -94,6 +98,7 @@ Item {
         isModified = true;
         projectName +=  name;
         projectType = type;
+
     }
 
     /**
@@ -108,6 +113,8 @@ Item {
         _isClosing = false;
         _isNew = false;
     }
+
+
 
     TDialogNewProject {
         id:dlgNewProject

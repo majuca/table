@@ -11,7 +11,7 @@ function getInitialData() {
                 "type":"",
                 "version":[
                     {
-                        "name":qsTr("Default"),
+                        "name":qsTr("Version 1"),
                         "images":[]
                     }
                 ]
@@ -55,7 +55,12 @@ function setImages(images) {
 
 function getImages() {
     if(jsonData !== null) {
-        return jsonData.version[project.currentProjectVersion].images;
+        var sources = []
+        for(var i=0; i<jsonData.version[project.currentProjectVersion].images.length; i++) {
+            sources.push(jsonData.version[project.currentProjectVersion].images[i].source);
+        }
+
+        return sources;
     }
 
     return [];
@@ -136,14 +141,20 @@ function open(url) {
     request.send(null);
 
     jsonData =JSON.parse(request.responseText);
+    console.debug()
     if(jsonData !== false) {
-       project.loaded();
-       listView.model = getImages();
+       load();
        return true;
     }
 
     return false;
 }
+
+function load() {
+    project.loaded();
+    listView.model = getImages();
+}
+
 
 function save() {
     var request = new XMLHttpRequest();

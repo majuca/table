@@ -40,6 +40,7 @@ Item {
             Layout.fillWidth: true
             editable: project.isOpen || project.isModified
             enabled: project.isOpen || project.isModified
+            model: [qsTr("Version 1")]
 
             Connections {
                 target: project
@@ -49,10 +50,15 @@ Item {
 
                 onProjectNameChanged: {
                     if(project.projectName === "") {
-                        version.model = undefined;
+                        version.model = [qsTr("Version 1")];
                     }
                 }
             }
+
+            onCurrentIndexChanged: {
+                project.currentProjectVersion  = currentIndex;
+            }
+
         }
     }
 
@@ -82,24 +88,23 @@ Item {
         Button {
             icon.name: qsTr("New")
             icon.source: "../image/plus-solid.svg"
-            onClicked: {
-                var i = version.currentIndex;
-                Project.addVersion(version.editText);
+            onClicked: {                
+                Project.addVersion(qsTr("New version"));
                 version.model = undefined;
                 version.model = Project.getVersionList();
-                version.currentIndex = i+1;
+                version.currentIndex = version.count-1;
             }
         }
         Button {
             icon.name: qsTr("Rename")
-            icon.source: "../image/edit-regular.svg"
+            icon.source: "../image/check-solid.svg"
             onClicked: {
                 var i = version.currentIndex;
                 Project.setVersionName(version.editText, version.currentIndex);
                 version.model = undefined;
                 version.model = Project.getVersionList();
                 version.currentIndex = i;
-
+                project.save();
             }
         }
     }

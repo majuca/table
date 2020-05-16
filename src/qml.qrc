@@ -17,5 +17,6 @@
         <file>qml/TProjectForm.qml</file>
         <file>image/edit-regular.svg</file>
         <file>qml/TListImage.qml</file>
+        <file>image/check-solid.svg</file>
     </qresource>
 </RCC>
