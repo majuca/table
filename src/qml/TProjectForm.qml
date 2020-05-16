@@ -68,7 +68,7 @@ Item {
 
         Button {
             icon.name:qsTr("Delete")
-            icon.source: "image/trash-solid.svg"
+            icon.source: "../image/trash-solid.svg"
             enabled: version.count > 1
             onClicked: {
                 var i = version.currentIndex;
@@ -81,7 +81,7 @@ Item {
 
         Button {
             icon.name: qsTr("New")
-            icon.source: "image/plus-solid.svg"
+            icon.source: "../image/plus-solid.svg"
             onClicked: {
                 var i = version.currentIndex;
                 Project.addVersion(version.editText);
@@ -92,7 +92,7 @@ Item {
         }
         Button {
             icon.name: qsTr("Rename")
-            icon.source: "image/edit-regular.svg"
+            icon.source: "../image/edit-regular.svg"
             onClicked: {
                 var i = version.currentIndex;
                 Project.setVersionName(version.editText, version.currentIndex);

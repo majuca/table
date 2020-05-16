@@ -44,7 +44,7 @@ Row {
         height: parent.height
         Button {
             icon.name: qsTr("New")
-            icon.source: "image/plus-solid.svg"
+            icon.source: "../image/plus-solid.svg"
             enabled: project.isOpen || project.isModified
             onClicked: {
                 fileDialog.open();
@@ -70,7 +70,7 @@ Row {
         }
         Button {
             icon.name:qsTr("Delete")
-            icon.source: "image/trash-solid.svg"
+            icon.source: "../image/trash-solid.svg"
             enabled: project.isOpen || project.isModified
             onClicked: {
                 var list = [];
