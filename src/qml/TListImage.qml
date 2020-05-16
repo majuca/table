@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.14
 import Qt.labs.platform 1.1
-import "./javascript/jsproject.js" as Project
+import "../javascript/jsproject.js" as Project
 
 
 Row {
