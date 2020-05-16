@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>HomeForm.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>TImage.qml</file>
+        <file>image/plus-solid.svg</file>
+        <file>image/th-solid.svg</file>
+        <file>image/trash-solid.svg</file>
+        <file>image/lock-open-solid.svg</file>
+        <file>image/lock-solid.svg</file>
+        <file>TMenu.qml</file>
+        <file>TDialogNewProject.qml</file>
+        <file>TProject.qml</file>
+        <file>javascript/jsproject.js</file>
+        <file>TSplitView.qml</file>
+        <file>TProjectForm.qml</file>
+        <file>image/edit-regular.svg</file>
+        <file>TListImage.qml</file>
+    </qresource>
+</RCC>
