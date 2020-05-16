@@ -40,7 +40,27 @@ Item {
             Layout.fillWidth: true
             editable: project.isOpen || project.isModified
             enabled: project.isOpen || project.isModified
-            model: [qsTr("Version 1")]
+            model: [qsTr("New version")]
+
+            property bool isNewVersionOrEdit: false
+
+
+            onCurrentTextChanged: {
+                console.debug(currentText,1);
+                isNewVersionOrEdit = false;
+            }
+
+            onEditTextChanged: {
+                console.debug(editText, 2);
+                if(currentText !== editText) {
+                    isNewVersionOrEdit = true;
+                }
+            }
+
+            onDisplayTextChanged: {
+                console.debug(displayText, 3);
+                isNewVersionOrEdit = false;
+            }
 
             Connections {
                 target: project
@@ -50,7 +70,7 @@ Item {
 
                 onProjectNameChanged: {
                     if(project.projectName === "") {
-                        version.model = [qsTr("Version 1")];
+                        version.model = [qsTr("New version")];
                     }
                 }
             }
@@ -67,37 +87,15 @@ Item {
         id: button
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 16
+
         width:parent.width
-        spacing: 16
-        layoutDirection:Qt.RightToLeft
+        spacing: 16        
         enabled: project.isOpen || project.isModified
 
         Button {
-            icon.name:qsTr("Delete")
-            icon.source: "../image/trash-solid.svg"
-            enabled: version.count > 1
-            onClicked: {
-                var i = version.currentIndex;
-                Project.subVersion(version.currentIndex);
-                version.model = undefined;
-                version.model = Project.getVersionList();
-                version.currentIndex = i-1;
-            }
-        }
-
-        Button {
-            icon.name: qsTr("New")
-            icon.source: "../image/plus-solid.svg"
-            onClicked: {                
-                Project.addVersion(qsTr("New version"));
-                version.model = undefined;
-                version.model = Project.getVersionList();
-                version.currentIndex = version.count-1;
-            }
-        }
-        Button {
             icon.name: qsTr("Rename")
             icon.source: "../image/check-solid.svg"
+            enabled: version.isNewVersionOrEdit
             onClicked: {
                 var i = version.currentIndex;
                 Project.setVersionName(version.editText, version.currentIndex);
@@ -105,6 +103,34 @@ Item {
                 version.model = Project.getVersionList();
                 version.currentIndex = i;
                 project.save();
+                version.isNewVersionOrEdit = false;
+            }
+        }
+
+
+        Button {
+            icon.name: qsTr("New")
+            icon.source: "../image/plus-solid.svg"
+            enabled: !version.isNewVersionOrEdit
+            onClicked: {                
+                Project.addVersion(qsTr("New version"));
+                version.model = undefined;
+                version.model = Project.getVersionList();
+                version.currentIndex = version.count-1;
+                version.isNewVersionOrEdit = true;
+            }
+        }
+
+        Button {
+            icon.name:qsTr("Delete")
+            icon.source: "../image/trash-solid.svg"
+            enabled: version.count > 1 && !version.isNewVersionOrEdit
+            onClicked: {
+                var i = version.currentIndex;
+                Project.subVersion(version.currentIndex);
+                version.model = undefined;
+                version.model = Project.getVersionList();
+                version.currentIndex = i-1;
             }
         }
     }

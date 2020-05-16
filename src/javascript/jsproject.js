@@ -11,7 +11,7 @@ function getInitialData() {
                 "type":"",
                 "version":[
                     {
-                        "name":qsTr("Version 1"),
+                        "name":qsTr("New version"),
                         "images":[]
                     }
                 ]

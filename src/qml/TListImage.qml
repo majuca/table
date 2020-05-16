@@ -15,6 +15,7 @@ Row {
         spacing: 8
         clip:true
         focus: true
+        boundsBehavior:Flickable.StopAtBounds
         model: []
         delegate: TImage {
             anchors.verticalCenter: parent.verticalCenter
@@ -23,7 +24,7 @@ Row {
                 listView.currentIndex = index;
             }
         }
-        ScrollBar.horizontal: ScrollBar { }
+        ScrollBar.horizontal: ScrollBar {}
 
         Component.onCompleted: {
             Project.setListView(listView);
