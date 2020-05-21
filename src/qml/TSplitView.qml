@@ -95,9 +95,20 @@ SplitView {
         SplitView.preferredWidth: 300
         SplitView.maximumWidth: 400
 
-        TProjectForm {
-            id:projectForm
+        Column {
 
+            anchors.fill: parent
+            spacing: 16
+
+            TProjectForm {
+                id:projectForm
+
+            }
+
+            TImageForm {
+                id:imageForm
+
+            }
         }
 
     }
