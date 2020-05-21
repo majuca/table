@@ -19,5 +19,8 @@
         <file>qml/TListImage.qml</file>
         <file>image/check-solid.svg</file>
         <file>image/angle-double-up-solid.svg</file>
+        <file>qml/TTable.qml</file>
+        <file>image/angle-double-down-solid.svg</file>
+        <file>qml/TTableImage.qml</file>
     </qresource>
 </RCC>

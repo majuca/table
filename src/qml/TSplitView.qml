@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.14
+import "../javascript/jsproject.js" as Project
 
 SplitView {
     id: split
@@ -21,10 +22,56 @@ SplitView {
             Item {
                 SplitView.fillHeight: true
 
-                Flickable {
+                TTable {
                     id: flickable
-                    anchors.fill : parent
-                    clip: true
+                }
+
+                Column {
+                    width: 80
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+
+                    Button {
+                        icon.name:qsTr("Delete")
+                        icon.source: "../image/trash-solid.svg"
+                        enabled: flickable.selected
+                        onClicked: {
+                            project.isModified = true;
+
+                            for(var i=0; i<Project.flickableImage.length; i++) {
+                                if(Project.flickableImage[i].obj) {
+                                    if(Project.flickableImage[i].obj.selected) {
+                                        Project.flickableImage[i].obj.destroy();
+                                        Project.flickableImage[i].obj = null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Button {
+                        icon.name:qsTr("Down")
+                        icon.source: "../image/angle-double-down-solid.svg"
+                        enabled: flickable.selected
+
+                        onClicked: {
+                            project.isModified = true;
+                            var current = Project.listView.model
+                            for(var i=0; i<Project.flickableImage.length; i++) {
+                                if(Project.flickableImage[i].obj) {
+                                    if(Project.flickableImage[i].obj.selected) {
+                                        current.push(Project.flickableImage[i].obj.source);
+                                        Project.flickableImage[i].obj.destroy();
+                                        Project.flickableImage[i].obj = null;
+
+                                    }
+                                }
+                            }
+
+                            Project.listView.model = undefined;
+                            Project.listView.model = current;
+                        }
+                    }
 
                 }
 

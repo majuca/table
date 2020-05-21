@@ -3,6 +3,8 @@
 var jsonData = null;
 var project = null;
 var listView = null;
+var flickable = null;
+var flickableImage = []
 
 function getInitialData() {
     if(!jsonData) {
@@ -57,13 +59,32 @@ function getImages() {
     if(jsonData !== null) {
         var sources = []
         for(var i=0; i<jsonData.version[project.currentProjectVersion].images.length; i++) {
-            sources.push(jsonData.version[project.currentProjectVersion].images[i].source);
+            if(jsonData.version[project.currentProjectVersion].images[i].parentImage === "stockImage") {
+                sources.push(jsonData.version[project.currentProjectVersion].images[i].source);
+            }
+
         }
 
         return sources;
     }
 
     return [];
+}
+
+function creatImage() {
+    if(jsonData !== null) {
+
+        flickable.reset();
+
+        for(var i=0; i<jsonData.version[project.currentProjectVersion].images.length; i++) {
+            if(jsonData.version[project.currentProjectVersion].images[i].parentImage === "table") {
+                flickable.add(jsonData.version[project.currentProjectVersion].images[i])
+            }
+
+        }
+
+    }
+
 }
 
 
@@ -153,6 +174,7 @@ function open(url) {
 function load() {
     project.loaded();
     listView.model = getImages();
+    creatImage();
 }
 
 
@@ -166,9 +188,29 @@ function save() {
         var jsonImages = [];
         for(var i=0; i<listView.count;i++) {
             var image = listView.itemAtIndex(i);
-            var json = {"source":image.source}
-            jsonImages.push(json);
+            if(image) {
+                var json = {
+                    "source":image.source,
+                    "parentImage":"stockImage"
+                }
+                jsonImages.push(json);
+            }
         }
+
+        for(i=0; i<flickableImage.length;i++) {
+            image = flickableImage[i].obj;
+            if(image) {
+                json = {
+                    "source":image.source,
+                    "x":image.x,
+                    "y":image.y,
+                    "height":image.height,
+                    "parentImage":"table"
+                }
+                jsonImages.push(json);
+            }
+        }
+
         setImages(jsonImages);
     }
 

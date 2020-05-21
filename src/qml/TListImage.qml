@@ -23,7 +23,7 @@ Row {
         delegate: TImage {
             anchors.verticalCenter: parent.verticalCenter
             source:modelData
-            imgHeight: parent.height - 32
+            height: parent.height - 32
             onClicked: {
 
                 listView.selected = false;
@@ -60,8 +60,35 @@ Row {
             icon.name:qsTr("Up")
             icon.source: "../image/angle-double-up-solid.svg"
             enabled: listView.selected
-            onClicked: {
 
+            onClicked: {
+                var list = [];
+                var x = 10;
+                var y = 10;
+                for(var i=0; i<listView.count; i++) {
+                    var item = listView.itemAtIndex(i);
+                    if(item && !item.selected) {
+                        list.push(listView.model[i])
+                    } else {
+                        if(item && item.selected) {
+                            var component = Qt.createComponent("TTableImage.qml")
+                            var obj = component.createObject(flickable.contentItem,{
+                                                       "source":item.source,
+                                                       "height":200,
+                                                       "isDragable":true,
+                                                       "x":x,
+                                                       "y":y,
+                                                             });
+                            Project.flickableImage.push({"obj":obj,"cmp":component});
+                            x+=20;
+                            y+=20;
+                        }
+                    }
+                }
+
+                project.isModified = true;
+                listView.model = list;
+                listView.selected = false;
             }
         }
 
