@@ -17,15 +17,33 @@ Flickable {
     ScrollBar.vertical: ScrollBar {}
 
     property bool selected: false
+    property var currentSelectImg: null
 
-    function setSelected() {
-        selected = false;
+    function setFrameType(type) {
         for(var i=0; i<Project.flickableImage.length; i++) {
             if(Project.flickableImage[i].obj) {
                 if(Project.flickableImage[i].obj.selected) {
-                    selected = true;
+                    Project.flickableImage[i].obj.frameType = type
+                    project.isModified = true
                 }
             }
+        }
+    }
+
+    function setSelected(img) {
+        for(var i=0; i<Project.flickableImage.length; i++) {
+            if(Project.flickableImage[i].obj !== img) {
+                Project.flickableImage[i].obj.selected = false;
+            }
+        }
+
+        if(img) {
+            currentSelectImg = img
+            currentSelectImg.selected = true;
+            selected = true;
+        } else {
+            currentSelectImg = null;
+            selected = false;
         }
     }
 
@@ -63,11 +81,10 @@ Flickable {
 
         var obj = component.createObject(flickable.contentItem,{
                                    "source":image.source,
-                                   "height":200,
-                                   "isDragable":true,
                                    "x":image.x,
                                    "y":image.y,
-                                   "height":image.height
+                                   "height":image.height,
+                                   "frameType":image.frameType
                                          });
         Project.flickableImage.push({"obj":obj,"cmp":component});
         resize(obj);

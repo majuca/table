@@ -25,7 +25,6 @@ Rectangle {
             root.clicked()
         }
 
-
         Image {
             id:image
             fillMode: Image.PreserveAspectFit

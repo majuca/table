@@ -24,6 +24,14 @@ SplitView {
 
                 TTable {
                     id: flickable
+                    onCurrentSelectImgChanged: {
+
+                        if(currentSelectImg) {
+                            imageForm.setCurrentFrameType(currentSelectImg.frameType);
+                        } else {
+                            imageForm.setCurrentFrameType("noFrame");
+                        }
+                    }
                 }
 
                 Column {
@@ -107,7 +115,14 @@ SplitView {
 
             TImageForm {
                 id:imageForm
+                formEnabled: flickable.selected
 
+                onNewFrameType: {
+                    if(flickable.currentSelectImg && flickable.currentSelectImg.frameType !== frameType ) {
+                        flickable.currentSelectImg.frameType = frameType;
+                        project.isModified = true
+                    }
+                }
             }
         }
 

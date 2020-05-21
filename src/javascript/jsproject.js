@@ -78,7 +78,7 @@ function creatImage() {
 
         for(var i=0; i<jsonData.version[project.currentProjectVersion].images.length; i++) {
             if(jsonData.version[project.currentProjectVersion].images[i].parentImage === "table") {
-                flickable.add(jsonData.version[project.currentProjectVersion].images[i])
+                flickable.add(jsonData.version[project.currentProjectVersion].images[i])                
             }
 
         }
@@ -162,7 +162,6 @@ function open(url) {
     request.send(null);
 
     jsonData =JSON.parse(request.responseText);
-    console.debug()
     if(jsonData !== false) {
        load();
        return true;
@@ -205,7 +204,8 @@ function save() {
                     "x":image.x,
                     "y":image.y,
                     "height":image.height,
-                    "parentImage":"table"
+                    "parentImage":"table",
+                    "frameType":image.frameType
                 }
                 jsonImages.push(json);
             }

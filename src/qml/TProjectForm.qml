@@ -46,19 +46,16 @@ Item {
 
 
             onCurrentTextChanged: {
-                console.debug(currentText,1);
                 isNewVersionOrEdit = false;
             }
 
             onEditTextChanged: {
-                console.debug(editText, 2);
                 if(currentText !== editText) {
                     isNewVersionOrEdit = true;
                 }
             }
 
             onDisplayTextChanged: {
-                console.debug(displayText, 3);
                 isNewVersionOrEdit = false;
             }
 
