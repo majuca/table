@@ -17,11 +17,23 @@ Row {
         focus: true
         boundsBehavior:Flickable.StopAtBounds
         model: []
+
+        property bool selected: false
+
         delegate: TImage {
             anchors.verticalCenter: parent.verticalCenter
             source:modelData
+            imgHeight: parent.height - 32
             onClicked: {
-                listView.currentIndex = index;
+
+                listView.selected = false;
+                for(var i=0; i<listView.count; i++) {
+                    var item = listView.itemAtIndex(i);
+                    if(item && item.selected) {
+                       listView.selected = true;
+                    }
+                }
+
             }
         }
         ScrollBar.horizontal: ScrollBar {}
@@ -43,6 +55,16 @@ Row {
     Column {
         width: 80
         height: parent.height
+
+        Button {
+            icon.name:qsTr("Up")
+            icon.source: "../image/angle-double-up-solid.svg"
+            enabled: listView.selected
+            onClicked: {
+
+            }
+        }
+
         Button {
             icon.name: qsTr("New")
             icon.source: "../image/plus-solid.svg"
@@ -65,6 +87,7 @@ Row {
                         current.push(files[i]);
                         project.isModified = true;
                     }
+                    listView.model = undefined;
                     listView.model = current;
                 }
             }
@@ -72,12 +95,12 @@ Row {
         Button {
             icon.name:qsTr("Delete")
             icon.source: "../image/trash-solid.svg"
-            enabled: project.isOpen || project.isModified
+            enabled: listView.selected
             onClicked: {
                 var list = [];
                 for(var i=0; i<listView.count; i++) {
                     var item = listView.itemAtIndex(i);
-                    if(!item.selected) {
+                    if(item && !item.selected) {
                         project.isModified = true;
                         list.push(listView.model[i])
                     }

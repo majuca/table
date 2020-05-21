@@ -18,5 +18,6 @@
         <file>image/edit-regular.svg</file>
         <file>qml/TListImage.qml</file>
         <file>image/check-solid.svg</file>
+        <file>image/angle-double-up-solid.svg</file>
     </qresource>
 </RCC>
