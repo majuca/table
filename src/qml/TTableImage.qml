@@ -9,6 +9,9 @@ Rectangle {
 
     property string frameType: "noFrame"
     property string format: "4_3"
+    property int size: 80
+    property int horizontal: 0
+    property int vertical: 0
 
 
     color: selected ? "grey" : "transparent"
@@ -42,17 +45,39 @@ Rectangle {
         image.setFormat()
     }
 
+    onSizeChanged: {
+        image.setFormat()
+    }
+
+    onHorizontalChanged: {
+        image.setFormat()
+    }
+
+    onVerticalChanged: {
+        image.setFormat()
+    }
+
+
+
     Rectangle {
         id:framRect
         color:"#FFFFFF"
         anchors.centerIn: parent
 
+        clip: true
+
         Image {
             id:image
             fillMode: Image.PreserveAspectFit
-            anchors.centerIn: parent
             sourceSize.height: 100
             sourceSize.width: 100
+
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: root.vertical
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenterOffset: root.horizontal
+
 
             Component.onCompleted: {
                 image.setFormat()
@@ -65,10 +90,10 @@ Rectangle {
                 switch(root.frameType) {
                     case "noFrame":
                         if(image.width>image.height) {
-                            image.sourceSize.width  = 300
+                            image.sourceSize.width  = 300 * (root.size/100)
                         }
                         if(image.width<=image.height) {
-                            image.sourceSize.height  = 300
+                            image.sourceSize.height  = 300 * (root.size/100)
                         }
                         framRect.width = image.width
                         framRect.height = image.height
@@ -98,7 +123,7 @@ Rectangle {
                         root.height = h + 8;
 
                         image.sourceSize.height = undefined
-                        image.sourceSize.width  = framRect.width * 0.8
+                        image.sourceSize.width  = framRect.width * (root.size/100)
 
 
                         break;
@@ -125,7 +150,7 @@ Rectangle {
                         root.height = h + 8;
 
                         image.sourceSize.width = undefined
-                        image.sourceSize.height  = framRect.height * 0.8
+                        image.sourceSize.height  = framRect.height * (root.size/100)
                         break;
                     case "square":
 
@@ -136,11 +161,11 @@ Rectangle {
 
                         if(image.width>image.height) {
                             image.sourceSize.height = undefined
-                            image.sourceSize.width  = framRect.width * 0.8
+                            image.sourceSize.width  = framRect.width * (root.size/100)
                         }
                         if(image.width<=image.height) {
                             image.sourceSize.width = undefined
-                            image.sourceSize.height  = framRect.height * 0.8
+                            image.sourceSize.height  = framRect.height * (root.size/100)
                         }
                         break;
                 }

@@ -206,7 +206,10 @@ function save() {
                     "height":image.height,
                     "parentImage":"table",
                     "frameType":image.frameType,
-                    "format":image.format
+                    "format":image.format,
+                    "size":image.size,
+                    "horizontal":image.horizontal,
+                    "vertical":image.vertical
                 }
                 jsonImages.push(json);
             }

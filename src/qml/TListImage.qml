@@ -73,12 +73,10 @@ Row {
                         if(item && item.selected) {
                             var component = Qt.createComponent("TTableImage.qml")
                             var obj = component.createObject(flickable.contentItem,{
-                                                       "source":item.source,
-                                                       "height":200,
-                                                       "isDragable":true,
+                                                       "source":item.source,                                                       
                                                        "x":x,
                                                        "y":y,
-                                                             });
+                                                      });
                             Project.flickableImage.push({"obj":obj,"cmp":component});
                             x+=20;
                             y+=20;

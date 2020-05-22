@@ -19,17 +19,6 @@ Flickable {
     property bool selected: false
     property var currentSelectImg: null
 
-    function setFrameType(type) {
-        for(var i=0; i<Project.flickableImage.length; i++) {
-            if(Project.flickableImage[i].obj) {
-                if(Project.flickableImage[i].obj.selected) {
-                    Project.flickableImage[i].obj.frameType = type
-                    project.isModified = true
-                }
-            }
-        }
-    }
-
     function setSelected(img) {
         for(var i=0; i<Project.flickableImage.length; i++) {
             if(Project.flickableImage[i].obj && Project.flickableImage[i].obj !== img) {
@@ -85,7 +74,11 @@ Flickable {
                                    "y":image.y,
                                    "height":image.height,
                                    "frameType":image.frameType,
-                                   "format":image.format
+                                   "format":image.format,
+                                   "size":image.size,
+                                   "horizontal":image.horizontal,
+                                   "vertical":image.vertical
+
                                          });
         Project.flickableImage.push({"obj":obj,"cmp":component});
         resize(obj);

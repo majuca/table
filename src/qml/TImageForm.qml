@@ -10,6 +10,8 @@ Item {
     id:root
     width:parent.width-16
     anchors.horizontalCenter: parent.horizontalCenter
+
+
     height: glForm.implicitHeight
 
     function setCurrentFrameType(type) {
@@ -45,10 +47,25 @@ Item {
         }
     }
 
+    function setCurrentSize(size) {
+        imageSize.value = size;
+    }
+
+    function setCurrentHorizontal(horizontal) {
+        imageHorizontal.value = horizontal;
+    }
+
+    function setCurrentVertical(vertical) {
+        imageVertical.value = vertical;
+    }
+
     property bool formEnabled: false
 
     signal newFrameType(string frameType)
     signal newFormat(string format)
+    signal newSize(int size)
+    signal newHorizontal(int horizontal)
+    signal newVertical(int vertical)
 
     GridLayout {
         id:glForm
@@ -114,6 +131,118 @@ Item {
 
             }
         }
+
+        Label {
+            text: qsTr("Size")
+        }
+
+        Slider {
+            enabled: root.formEnabled
+            id:imageSize
+            from: 10
+            value: 80
+            to: 100
+            Layout.fillWidth: true
+            stepSize: 1
+
+            onValueChanged: {
+                newSize(value);
+            }
+
+            Text {
+                text: imageSize.value + " %"
+                color: "#FFFFFF"
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                MouseArea {
+                    anchors.fill: parent
+
+                    onDoubleClicked: {
+                        imageSize.value = 80;
+                        mouse.accepted = true
+                    }
+
+                }
+            }
+
+
+        }
+
+        Label {
+            text: qsTr("Horizontal")
+        }
+
+        Slider {
+            enabled: root.formEnabled
+            id:imageHorizontal
+            from: flickable.currentSelectImg ? flickable.currentSelectImg.width/2*-1 : 0
+            value: 0
+            to: flickable.currentSelectImg ? flickable.currentSelectImg.width/2 : 0
+            Layout.fillWidth: true
+
+            stepSize: 1
+
+            onValueChanged: {
+                newHorizontal(value);
+            }
+
+            Text {
+                text: imageHorizontal.value
+                color: "#FFFFFF"
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                MouseArea {
+                    anchors.fill: parent
+
+                    onDoubleClicked: {
+                        imageHorizontal.value = 0;
+                        mouse.accepted = true
+                    }
+                }
+            }
+
+
+        }
+
+        Label {
+            text: qsTr("Vertical")
+        }
+
+        Slider {
+            enabled: root.formEnabled
+            id:imageVertical
+            from: flickable.currentSelectImg ? flickable.currentSelectImg.height/2*-1 : 0
+            value: 0
+            to: flickable.currentSelectImg ? flickable.currentSelectImg.height/2 : 0
+            Layout.fillWidth: true
+
+            stepSize: 1
+
+            onValueChanged: {
+                newVertical(value);
+            }
+
+            Text {
+                text: imageVertical.value
+                color: "#FFFFFF"
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                MouseArea {
+                    anchors.fill: parent
+
+                    onDoubleClicked: {
+                        imageVertical.value = 0;
+                        mouse.accepted = true
+                    }
+
+                }
+            }
+
+
+
+
+        }
+
     }
 
 }
