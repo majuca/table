@@ -205,7 +205,8 @@ function save() {
                     "y":image.y,
                     "height":image.height,
                     "parentImage":"table",
-                    "frameType":image.frameType
+                    "frameType":image.frameType,
+                    "format":image.format
                 }
                 jsonImages.push(json);
             }

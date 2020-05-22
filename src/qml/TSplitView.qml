@@ -28,6 +28,8 @@ SplitView {
 
                         if(currentSelectImg) {
                             imageForm.setCurrentFrameType(currentSelectImg.frameType);
+                            imageForm.setCurrentFormat(currentSelectImg.format);
+
                         } else {
                             imageForm.setCurrentFrameType("noFrame");
                         }
@@ -120,6 +122,13 @@ SplitView {
                 onNewFrameType: {
                     if(flickable.currentSelectImg && flickable.currentSelectImg.frameType !== frameType ) {
                         flickable.currentSelectImg.frameType = frameType;
+                        project.isModified = true
+                    }
+                }
+
+                onNewFormat: {
+                    if(flickable.currentSelectImg && flickable.currentSelectImg.format !== format ) {
+                        flickable.currentSelectImg.format = format;
                         project.isModified = true
                     }
                 }

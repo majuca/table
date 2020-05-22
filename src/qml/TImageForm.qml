@@ -23,6 +23,24 @@ Item {
             case "italian":
                 frameType.currentIndex = 2;
                 break;
+            case "square":
+                frameType.currentIndex = 3;
+                break;
+
+        }
+    }
+
+    function setCurrentFormat(format) {
+        switch(format) {
+            case "16_9":
+                frenchFormat.currentIndex = 0;
+                break;
+            case "3_2":
+                frenchFormat.currentIndex = 1;
+                break;
+            case "4_3":
+                frenchFormat.currentIndex = 2;
+                break;
 
         }
     }
@@ -30,6 +48,7 @@ Item {
     property bool formEnabled: false
 
     signal newFrameType(string frameType)
+    signal newFormat(string format)
 
     GridLayout {
         id:glForm
@@ -45,7 +64,7 @@ Item {
             id: frameType
             Layout.fillWidth: true
             enabled: root.formEnabled
-            model: [qsTr("No frame"), qsTr("French"), qsTr("Italian")]
+            model: [qsTr("No frame"), qsTr("French"), qsTr("Italian"), qsTr("Square")]
 
             onCurrentIndexChanged: {
                 switch(currentIndex) {
@@ -57,6 +76,38 @@ Item {
                         break;
                     case 2:
                         root.newFrameType("italian");
+                        break;
+                    case 3:
+                        root.newFrameType("square");
+                        break;
+
+                }
+
+            }
+        }
+
+        Label {
+            text: qsTr("Format")
+            visible: frameType.currentIndex > 0 && frameType.currentIndex < 3
+        }
+
+        ComboBox {
+            id: frenchFormat
+            Layout.fillWidth: true
+            enabled: root.formEnabled
+            visible: frameType.currentIndex > 0 && frameType.currentIndex < 3
+            model: [qsTr("16/9"), qsTr("3/2"), qsTr("4/3")]
+
+            onCurrentIndexChanged: {
+                switch(currentIndex) {
+                    case 0:
+                        root.newFormat("16_9");
+                        break;
+                    case 1:
+                        root.newFormat("3_2");
+                        break;
+                    case 2:
+                        root.newFormat("4_3");
                         break;
 
                 }

@@ -32,7 +32,7 @@ Flickable {
 
     function setSelected(img) {
         for(var i=0; i<Project.flickableImage.length; i++) {
-            if(Project.flickableImage[i].obj !== img) {
+            if(Project.flickableImage[i].obj && Project.flickableImage[i].obj !== img) {
                 Project.flickableImage[i].obj.selected = false;
             }
         }
@@ -84,7 +84,8 @@ Flickable {
                                    "x":image.x,
                                    "y":image.y,
                                    "height":image.height,
-                                   "frameType":image.frameType
+                                   "frameType":image.frameType,
+                                   "format":image.format
                                          });
         Project.flickableImage.push({"obj":obj,"cmp":component});
         resize(obj);

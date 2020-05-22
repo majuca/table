@@ -8,6 +8,8 @@ Rectangle {
     property bool selected: false
 
     property string frameType: "noFrame"
+    property string format: "4_3"
+
 
     color: selected ? "grey" : "transparent"
 
@@ -33,17 +35,11 @@ Rectangle {
     Drag.active: selected
 
     onFrameTypeChanged: {
-        switch(frameType) {
-            case "noFrame":
-                image.setNoFrame();
-                break;
-            case "french":
-                image.setFrenchType()
-                break;
-            case "italian":
-                image.setItalianType()
-                break;
-        }
+        image.setFormat()
+    }
+
+    onFormatChanged: {
+        image.setFormat()
     }
 
     Rectangle {
@@ -59,67 +55,99 @@ Rectangle {
             sourceSize.width: 100
 
             Component.onCompleted: {
-                switch(frameType) {
+                image.setFormat()
+            }
+
+
+            function setFormat() {
+                var w = 0;
+                var h = 0;
+                switch(root.frameType) {
                     case "noFrame":
-                        setNoFrame();
+                        if(image.width>image.height) {
+                            image.sourceSize.width  = 300
+                        }
+                        if(image.width<=image.height) {
+                            image.sourceSize.height  = 300
+                        }
+                        framRect.width = image.width
+                        framRect.height = image.height
+                        root.width = image.width + 8
+                        root.height = image.height + 8
                         break;
                     case "french":
-                        setFrenchType()
+                        switch(format) {
+                            case "16_9":
+                                w = 225;
+                                h = 400;
+                                break;
+                            case "3_2":
+                                w = 267;
+                                h = 400;
+                                break;
+                            case "4_3":
+                                w = 300
+                                h = 400
+                                break;
+                        }
+
+                        framRect.width = w;
+                        framRect.height = h;
+
+                        root.width = w + 8;
+                        root.height = h + 8;
+
+                        image.sourceSize.height = undefined
+                        image.sourceSize.width  = framRect.width * 0.8
+
+
                         break;
                     case "italian":
-                        setItalianType()
+                        switch(format) {
+                            case "16_9":
+                                w = 400;
+                                h = 225;
+                                break;
+                            case "3_2":
+                                w = 400;
+                                h = 267;
+                                break;
+                            case "4_3":
+                                w = 400
+                                h = 300
+                                break;
+                        }
+
+                        framRect.width = w;
+                        framRect.height = h;
+
+                        root.width = w + 8;
+                        root.height = h + 8;
+
+                        image.sourceSize.width = undefined
+                        image.sourceSize.height  = framRect.height * 0.8
+                        break;
+                    case "square":
+
+                        framRect.width = 300;
+                        framRect.height = 300;
+                        root.width = 300 + 8;
+                        root.height = 300 + 8;
+
+                        if(image.width>image.height) {
+                            image.sourceSize.height = undefined
+                            image.sourceSize.width  = framRect.width * 0.8
+                        }
+                        if(image.width<=image.height) {
+                            image.sourceSize.width = undefined
+                            image.sourceSize.height  = framRect.height * 0.8
+                        }
                         break;
                 }
             }
 
 
 
-            function setNoFrame() {
-                if(image.sourceSize.width>image.sourceSize.height) {
-                    image.sourceSize.width  = 200
-                }
-                if(image.sourceSize.width<=image.sourceSize.height) {
-                    image.sourceSize.height  = 200
-                }
-
-                framRect.width = image.width
-                framRect.height = image.height
-                root.width = image.width + 8
-                root.height = image.height + 8
-
-            }
-
-            function setFrenchType() {
-                if(image.sourceSize.width>image.sourceSize.height) {
-                    image.sourceSize.width  = 200
-                }
-                if(image.sourceSize.width<=image.sourceSize.height) {
-                    image.sourceSize.height  = 200
-                }
-
-                framRect.width = image.width + 40
-                framRect.height = image.height + 140
-
-                root.width = image.width + 40 + 8
-                root.height = image.height  + 140 + 8
-
-            }
-
-            function setItalianType() {
-                if(image.sourceSize.width>image.sourceSize.height) {
-                    image.sourceSize.width  = 200
-                }
-                if(image.sourceSize.width<=image.sourceSize.height) {
-                    image.sourceSize.height  = 200
-                }
-
-                framRect.width = image.width + 140
-                framRect.height = image.height + 40
-
-                root.width = image.width + 140 + 8
-                root.height = image.height  + 40 + 8
-
-            }
         }
     }
 
