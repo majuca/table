@@ -5,7 +5,7 @@ import Qt.labs.settings 1.0
 ApplicationWindow {
     id: window
     visible: true
-    title: qsTr("Table") + (project.projectName !== "" ? " - " + (project.isModified ? project.projectName + "*" : project.projectName) : "")
+    title: qsTr("Table") + " " + version + (project.projectName !== "" ? " - " + (project.isModified ? project.projectName + "*" : project.projectName) : "")
     visibility:"Maximized"
 
     menuBar: TMenu {
@@ -49,6 +49,14 @@ ApplicationWindow {
         project: project
     }
 
+
+    TAboutDialog {
+        id:aboutDialog
+    }
+
+    TQtDialog {
+        id:qtDialog
+    }
 
     Settings {
         id: settings

@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/main.qml</file>
-        <file>qml/HomeForm.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>qml/TImage.qml</file>
         <file>image/plus-solid.svg</file>
@@ -24,5 +23,12 @@
         <file>qml/TTableImage.qml</file>
         <file>qml/TImageForm.qml</file>
         <file>image/table.png</file>
+        <file>qml/TAboutDialog.qml</file>
+        <file>image/256x256/table.png</file>
+        <file>image/48x48/table.png</file>
+        <file>image/64x64/table.png</file>
+        <file>qml/TQtDialog.qml</file>
+        <file>lang/Table_en_150.qm</file>
+        <file>lang/Table_fr_150.qm</file>
     </qresource>
 </RCC>

@@ -1,6 +1,9 @@
 #include <QGuiApplication>
 #include <QIcon>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <ctools.h>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
@@ -11,10 +14,22 @@ int main(int argc, char *argv[])
     app.setOrganizationDomain("jeanlucgyger.ch");
     app.setApplicationName("Table");
 
-    app.setWindowIcon(QIcon("qrc:/image/table.png"));
+    app.setWindowIcon(QIcon(":/image/48x48/table.png"));
 
 
     QQmlApplicationEngine engine;
+
+    CTools *tools = new CTools(NULL);
+    QString defaultLocale = QLocale::system().name();
+    defaultLocale.truncate(defaultLocale.lastIndexOf('_'));
+    tools->loadTranslator(defaultLocale);
+    qDebug() << defaultLocale;
+
+    engine.rootContext()->setContextProperty("version", VERSION);
+    engine.rootContext()->setContextProperty("qtVersion", QT_VERSION_STR);
+
+    engine.rootContext()->setContextProperty("tools", tools);
+
     const QUrl url(QStringLiteral("qrc:/qml/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
