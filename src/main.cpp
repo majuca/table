@@ -1,4 +1,5 @@
 #include <QGuiApplication>
+#include <QIcon>
 #include <QQmlApplicationEngine>
 
 int main(int argc, char *argv[])
@@ -9,6 +10,8 @@ int main(int argc, char *argv[])
     app.setOrganizationName("Jean-Luc Gyger");
     app.setOrganizationDomain("jeanlucgyger.ch");
     app.setApplicationName("Table");
+
+    app.setWindowIcon(QIcon("qrc:/image/table.png"));
 
 
     QQmlApplicationEngine engine;

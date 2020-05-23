@@ -23,5 +23,6 @@
         <file>image/angle-double-down-solid.svg</file>
         <file>qml/TTableImage.qml</file>
         <file>qml/TImageForm.qml</file>
+        <file>image/table.png</file>
     </qresource>
 </RCC>
