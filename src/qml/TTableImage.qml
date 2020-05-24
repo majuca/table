@@ -13,24 +13,19 @@ Rectangle {
     property int horizontal: 0
     property int vertical: 0
 
-
     color: selected ? "grey" : "transparent"
 
     onXChanged: {
-        if(parent === flickable.contentItem) {
-            flickable.resize()
-            if(selected) {
-                project.isModified = true;
-            }
+        flickable.resize()
+        if(selected) {
+            project.isModified = true;
         }
     }
 
     onYChanged: {
-        if(parent === flickable.contentItem) {
-            flickable.resize()
-            if(selected) {
-                project.isModified = true;
-            }
+        flickable.resize()
+        if(selected) {
+            project.isModified = true;
         }
     }
 
@@ -80,7 +75,7 @@ Rectangle {
 
 
             Component.onCompleted: {
-                image.setFormat()
+                image.setFormat();
             }
 
 
@@ -99,6 +94,7 @@ Rectangle {
                         framRect.height = image.height
                         root.width = image.width + 8
                         root.height = image.height + 8
+
                         break;
                     case "french":
                         switch(format) {

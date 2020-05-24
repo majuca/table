@@ -20,22 +20,36 @@ Row {
 
         property bool selected: false
 
+        property real xPosition: 0
+
         delegate: TImage {
             anchors.verticalCenter: parent.verticalCenter
-            source:modelData
+            source:modelData.source
+            selected: modelData.selected
             height: parent.height - 32
             onClicked: {
+                listView.xPosition = listView.contentX;
+                var d = listView.model;
+                d[index].selected = !selected;
+                listView.model = d;
+            }          
+        }
+
+        onModelChanged: {
+            contentX = xPosition;
+
+            if(listView.model) {
 
                 listView.selected = false;
-                for(var i=0; i<listView.count; i++) {
-                    var item = listView.itemAtIndex(i);
-                    if(item && item.selected) {
+                for(var i=0; i<listView.model.length; i++) {
+                    if(listView.model[i].selected) {
                        listView.selected = true;
                     }
                 }
-
             }
+
         }
+
         ScrollBar.horizontal: ScrollBar {}
 
         Component.onCompleted: {
@@ -65,21 +79,23 @@ Row {
                 var list = [];
                 var x = 10;
                 var y = 10;
-                for(var i=0; i<listView.count; i++) {
-                    var item = listView.itemAtIndex(i);
-                    if(item && !item.selected) {
+                for(var i=0; i<listView.model.length; i++) {
+                    if(!listView.model[i].selected) {
                         list.push(listView.model[i])
-                    } else {
-                        if(item && item.selected) {
-                            var component = Qt.createComponent("TTableImage.qml")
+                    } else {                        
+                        var component = Qt.createComponent("TTableImage.qml")
+                        if (component.status === Component.Ready) {
                             var obj = component.createObject(flickable.contentItem,{
-                                                       "source":item.source,                                                       
+                                                       "source":listView.model[i].source,
                                                        "x":x,
                                                        "y":y,
                                                       });
+
                             Project.flickableImage.push({"obj":obj,"cmp":component});
                             x+=20;
                             y+=20;
+                        } else {
+                            console.debug("Component not ready")
                         }
                     }
                 }
@@ -104,12 +120,12 @@ Row {
                 folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
                 fileMode:FileDialog.OpenFiles
 
-                nameFilters: [ qsTr("Image files (*.jpg *.jpeg *.png *.tiff)"), qsTr("All files (*)") ]
+                nameFilters: [ qsTr("Image files") + " (*.jpg *.jpeg *.png *.tiff)", qsTr("All files") + " (*)" ]
                 onAccepted: {
                     var current = listView.model
                     var files = JSON.parse(JSON.stringify(fileDialog.currentFiles));
                     for(var i=0;i<files.length; i++) {
-                        current.push(files[i]);
+                        current.push({"source":files[i],"selected":false});
                         project.isModified = true;
                     }
                     listView.model = undefined;

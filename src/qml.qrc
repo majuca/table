@@ -39,5 +39,6 @@
         <file>qt_lang/qtdeclarative_fr.qm</file>
         <file>qt_lang/qtquickcontrols_fr.qm</file>
         <file>qt_lang/qtquickcontrols_en.qm</file>
+        <file>qml/TErrorDialog.qml</file>
     </qresource>
 </RCC>

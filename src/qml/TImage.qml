@@ -21,7 +21,6 @@ Rectangle {
         height: parent.height
 
         onReleased: {
-            root.selected =! root.selected
             root.clicked()
         }
 

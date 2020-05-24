@@ -58,6 +58,19 @@
     </message>
 </context>
 <context>
+    <name>TErrorDialog</name>
+    <message>
+        <location filename="../qml/TErrorDialog.qml" line="7"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/TErrorDialog.qml" line="12"/>
+        <source>This is not a valid Table project</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TImageForm</name>
     <message>
         <location filename="../qml/TImageForm.qml" line="78"/>
@@ -134,12 +147,12 @@
     </message>
     <message>
         <location filename="../qml/TListImage.qml" line="107"/>
-        <source>Image files (*.jpg *.jpeg *.png *.tiff)</source>
+        <source>Image files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/TListImage.qml" line="107"/>
-        <source>All files (*)</source>
+        <source>All files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -209,22 +222,12 @@
 <context>
     <name>TPreferenceDialog</name>
     <message>
-        <location filename="../qml/TPreferenceDialog.qml" line="15"/>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/TPreferenceDialog.qml" line="19"/>
-        <source>Close</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/TPreferenceDialog.qml" line="29"/>
+        <location filename="../qml/TPreferenceDialog.qml" line="10"/>
         <source>Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/TPreferenceDialog.qml" line="40"/>
+        <location filename="../qml/TPreferenceDialog.qml" line="21"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
@@ -238,16 +241,20 @@
     </message>
     <message>
         <location filename="../qml/TProject.qml" line="133"/>
-        <source>Image files (*.tbl)</source>
-        <translation type="unfinished">Table file</translation>
-    </message>
-    <message>
-        <location filename="../qml/TProject.qml" line="133"/>
-        <source>All files (*)</source>
+        <source>Table files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/TProject.qml" line="145"/>
+        <location filename="../qml/TProject.qml" line="133"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image files (*.tbl)</source>
+        <translation type="obsolete">Table file</translation>
+    </message>
+    <message>
+        <location filename="../qml/TProject.qml" line="152"/>
         <source>Save the Table project</source>
         <translation type="unfinished"></translation>
     </message>

@@ -162,18 +162,44 @@ function open(url) {
     request.send(null);
 
     jsonData =JSON.parse(request.responseText);
-    if(jsonData !== false) {
-       load();
-       return true;
+    if(jsonData !== false) {       
+       return load();
     }
 
     return false;
 }
 
 function load() {
-    project.loaded();
-    listView.model = getImages();
-    creatImage();
+    if(checkData()) {
+        project.loaded()
+        var imgs = getImages();
+        var data = []
+        for(var i=0; i<imgs.length; i++) {
+            data.push({"source":imgs[i],"selected":false});
+        }
+
+        listView.model = data;
+        creatImage();
+        return true;
+    }
+
+
+    return false;
+}
+
+function checkData() {
+
+    if(jsonData !== null) {
+        if("name" in jsonData) {
+            if("type" in jsonData) {
+                if("version" in jsonData) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
 }
 
 
@@ -185,19 +211,17 @@ function save() {
 
     if(listView) {
         var jsonImages = [];
-        for(var i=0; i<listView.count;i++) {
-            var image = listView.itemAtIndex(i);
-            if(image) {
-                var json = {
-                    "source":image.source,
-                    "parentImage":"stockImage"
-                }
-                jsonImages.push(json);
+
+        for(var i=0; i<listView.model.length;i++) {
+            var json = {
+                "source":listView.model[i].source,
+                "parentImage":"stockImage"
             }
+            jsonImages.push(json);
         }
 
         for(i=0; i<flickableImage.length;i++) {
-            image = flickableImage[i].obj;
+            var image = flickableImage[i].obj;
             if(image) {
                 json = {
                     "source":image.source,

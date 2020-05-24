@@ -130,15 +130,18 @@ Item {
         title: qsTr("Please choose a file")
         folder: StandardPaths.writableLocation(StandardPaths.HomeLocation)
         fileMode:FileDialog.OpenFiles
-        nameFilters: [ qsTr("Image files (*.tbl)"), qsTr("All files (*)") ]
-        onAccepted: {
-            projectFile = openProjectFileDialog.file;
+        nameFilters: [ qsTr("Table files") +  " (*.tbl)", qsTr("All files") + " (*)"]
+        onAccepted: {            
             if(Project.open(openProjectFileDialog.file)) {
+                projectFile = openProjectFileDialog.file;
                 projectName = Project.getName();
                 projectType = Project.getType();
+            } else {
+                errorDlg.open();
             }
         }
-    }
+    }   
+
 
     FileDialog {
         id: saveProjectFileDialog

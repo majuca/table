@@ -62,6 +62,10 @@ ApplicationWindow {
         id: preferenceDialog
     }
 
+    TErrorDialog {
+        id: errorDlg
+    }
+
     Settings {
         id: settings
         property string currentLanguage: Qt.locale().name.substring(0,2)

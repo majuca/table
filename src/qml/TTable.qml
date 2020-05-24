@@ -61,27 +61,31 @@ Flickable {
         }
 
         contentHeight = biggerY;
-        contentWidth = biggerX
+        contentWidth = biggerX;
 
     }
 
     function add(image) {
-        var component = Qt.createComponent("TTableImage.qml");
+        var component = Qt.createComponent("TTableImage.qml");                             
+        if (component.status === Component.Ready) {
 
-        var obj = component.createObject(flickable.contentItem,{
-                                   "source":image.source,
-                                   "x":image.x,
-                                   "y":image.y,
-                                   "height":image.height,
-                                   "frameType":image.frameType,
-                                   "format":image.format,
-                                   "size":image.size,
-                                   "horizontal":image.horizontal,
-                                   "vertical":image.vertical
+            var obj = component.createObject(flickable.contentItem,{
+                                       "source":image.source,
+                                       "x":image.x,
+                                       "y":image.y,
+                                       "height":image.height,
+                                       "frameType":image.frameType,
+                                       "format":image.format,
+                                       "size":image.size,
+                                       "horizontal":image.horizontal,
+                                       "vertical":image.vertical
+                                             });
 
-                                         });
-        Project.flickableImage.push({"obj":obj,"cmp":component});
-        resize(obj);
+            Project.flickableImage.push({"obj":obj,"cmp":component});
+            resize(obj);
+        } else {
+            console.debug("Component not ready")
+        }
 
     }
 
@@ -98,9 +102,28 @@ Flickable {
     Connections {
         target: project
         onIsOpenChanged: {
-            flickable.reset();
+            if(!project.isOpen) {
+                flickable.reset();
+            }
         }
     }
 
+    MouseArea {
+        anchors.fill: parent
+        propagateComposedEvents: true
+
+        onClicked: {
+            for(var i=0; i<Project.flickableImage.length; i++) {
+                if(Project.flickableImage[i].obj) {
+                    Project.flickableImage[i].obj.selected = false;
+                }
+            }
+
+
+            currentSelectImg = null;
+            selected = false;
+
+        }
+    }
 
 }

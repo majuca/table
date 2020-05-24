@@ -75,7 +75,7 @@ SplitView {
                             for(var i=0; i<Project.flickableImage.length; i++) {
                                 if(Project.flickableImage[i].obj) {
                                     if(Project.flickableImage[i].obj.selected) {
-                                        current.push(Project.flickableImage[i].obj.source);
+                                        current.push({source:Project.flickableImage[i].obj.source, selected:false});
                                         Project.flickableImage[i].obj.destroy();
                                         Project.flickableImage[i].obj = null;
 
