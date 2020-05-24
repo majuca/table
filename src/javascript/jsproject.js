@@ -162,7 +162,7 @@ function open(url) {
     request.send(null);
 
     jsonData =JSON.parse(request.responseText);
-    if(jsonData !== false) {       
+    if(jsonData !== false) {
        return load();
     }
 
