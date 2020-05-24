@@ -4,6 +4,7 @@
 #include <QQmlContext>
 #include <ctools.h>
 #include <QDebug>
+#include <QSettings>
 
 int main(int argc, char *argv[])
 {
@@ -19,11 +20,17 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    CTools *tools = new CTools(NULL);
+    CTools *tools = new CTools(NULL, &engine);
     QString defaultLocale = QLocale::system().name();
     defaultLocale.truncate(defaultLocale.lastIndexOf('_'));
-    tools->loadTranslator(defaultLocale);
-    qDebug() << defaultLocale;
+
+
+    QSettings settings;
+    QString currentLanguage = settings.value("currentLanguage",defaultLocale).toString();
+    qDebug() << currentLanguage;
+
+
+    tools->loadTranslator(currentLanguage);
 
     engine.rootContext()->setContextProperty("version", VERSION);
     engine.rootContext()->setContextProperty("qtVersion", QT_VERSION_STR);

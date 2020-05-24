@@ -94,9 +94,9 @@ MenuBar {
         MenuSeparator {}
 
         MenuItem {
-            text: qsTr("Setting...")
+            text: qsTr("Preference...")
             onTriggered: {
-
+                preferenceDialog.open();
             }
 
         }

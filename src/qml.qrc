@@ -30,5 +30,14 @@
         <file>qml/TQtDialog.qml</file>
         <file>lang/Table_en_150.qm</file>
         <file>lang/Table_fr_150.qm</file>
+        <file>qml/TPreferenceDialog.qml</file>
+        <file>qt_lang/qt_en.qm</file>
+        <file>qt_lang/qt_fr.qm</file>
+        <file>qt_lang/qtbase_en.qm</file>
+        <file>qt_lang/qtbase_fr.qm</file>
+        <file>qt_lang/qtdeclarative_en.qm</file>
+        <file>qt_lang/qtdeclarative_fr.qm</file>
+        <file>qt_lang/qtquickcontrols_fr.qm</file>
+        <file>qt_lang/qtquickcontrols_en.qm</file>
     </qresource>
 </RCC>

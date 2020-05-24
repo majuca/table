@@ -6,6 +6,9 @@ Dialog {
     anchors.centerIn: parent
     width: 500
     height: 300
+
+    title : qsTr("About Table")
+
     TabBar {
         id:bar
         width: parent.width

@@ -4,22 +4,27 @@
 <context>
     <name>TAboutDialog</name>
     <message>
-        <location filename="../qml/TAboutDialog.qml" line="13"/>
-        <source>About</source>
+        <location filename="../qml/TAboutDialog.qml" line="10"/>
+        <source>About Table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/TAboutDialog.qml" line="16"/>
-        <source>Author</source>
+        <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/TAboutDialog.qml" line="19"/>
+        <source>Author</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/TAboutDialog.qml" line="22"/>
         <source>Licence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/TAboutDialog.qml" line="60"/>
+        <location filename="../qml/TAboutDialog.qml" line="63"/>
         <source>Developpement team</source>
         <translation type="unfinished"></translation>
     </message>
@@ -148,7 +153,6 @@
     <message>
         <location filename="../qml/TMenu.qml" line="18"/>
         <source>&amp;File</source>
-        <translatorcomment>&amp;Fichier</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -178,8 +182,8 @@
     </message>
     <message>
         <location filename="../qml/TMenu.qml" line="97"/>
-        <source>Setting...</source>
-        <translation type="unfinished"></translation>
+        <source>Preference...</source>
+        <translation type="unfinished">Preferences...</translation>
     </message>
     <message>
         <location filename="../qml/TMenu.qml" line="107"/>
@@ -199,6 +203,29 @@
     <message>
         <location filename="../qml/TMenu.qml" line="132"/>
         <source>About Qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TPreferenceDialog</name>
+    <message>
+        <location filename="../qml/TPreferenceDialog.qml" line="15"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/TPreferenceDialog.qml" line="19"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/TPreferenceDialog.qml" line="29"/>
+        <source>Preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/TPreferenceDialog.qml" line="40"/>
+        <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -257,6 +284,14 @@
     <message>
         <location filename="../qml/TProjectForm.qml" line="122"/>
         <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TQtDialog</name>
+    <message>
+        <location filename="../qml/TQtDialog.qml" line="10"/>
+        <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

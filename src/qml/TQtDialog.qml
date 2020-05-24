@@ -5,7 +5,9 @@ import QtQuick.Layouts 1.14
 Dialog {
     anchors.centerIn: parent
     width: 600
-    height: 600
+    height: 630
+
+    title : qsTr("About Qt")
 
     Text {
         width:parent.width - 16
@@ -13,8 +15,7 @@ Dialog {
         wrapMode: Text.WordWrap
         anchors.centerIn: parent
         textFormat:Text.RichText
-        text: "<h3>About Qt</h3>" +
-        "<p>This program uses Qt version " + qtVersion + ".</p>" +
+        text: "<p>This program uses Qt version " + qtVersion + ".</p>" +
         "<p>Qt is a C++ toolkit for cross-platform application development.</p>" +
         "<p>Qt provides single-source portability across all major desktop " +
         "operating systems. It is also available for embedded Linux and other " +
