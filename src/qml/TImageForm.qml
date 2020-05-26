@@ -52,6 +52,8 @@ Item {
     }
 
     function setCurrentHorizontal(horizontal) {
+        console.debug(horizontal)
+        imageHorizontal.value = horizontal;
         imageHorizontal.value = horizontal;
     }
 
@@ -182,7 +184,7 @@ Item {
 
             stepSize: 1
 
-            onValueChanged: {
+            onValueChanged: {                
                 newHorizontal(value);
             }
 

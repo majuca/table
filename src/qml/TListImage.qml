@@ -73,6 +73,8 @@ Row {
         Button {
             icon.name:qsTr("Up")
             icon.source: "../image/angle-double-up-solid.svg"
+            icon.height: 16
+            icon.width: 12
             enabled: listView.selected
 
             onClicked: {
@@ -109,6 +111,8 @@ Row {
         Button {
             icon.name: qsTr("New")
             icon.source: "../image/plus-solid.svg"
+            icon.height: 16
+            icon.width: 12
             enabled: project.isOpen || project.isModified
             onClicked: {
                 fileDialog.open();
@@ -136,6 +140,8 @@ Row {
         Button {
             icon.name:qsTr("Delete")
             icon.source: "../image/trash-solid.svg"
+            icon.height: 16
+            icon.width: 12
             enabled: listView.selected
             onClicked: {
                 var list = [];

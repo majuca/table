@@ -185,12 +185,9 @@ Rectangle {
 
         onPressed: {
             root.selected = true
-
-            if(root.selected) {
-                flickable.setSelected(root);
-            } else {
-                flickable.setSelected(null);
-            }
+            flickable.setSelected(root);
+            // do this two time, otherwise the slider is not set ??
+            flickable.setSelected(root);
         }
     }
 }

@@ -40,5 +40,6 @@
         <file>qt_lang/qtquickcontrols_fr.qm</file>
         <file>qt_lang/qtquickcontrols_en.qm</file>
         <file>qml/TErrorDialog.qml</file>
+        <file>image/mouse-pointer-solid.svg</file>
     </qresource>
 </RCC>

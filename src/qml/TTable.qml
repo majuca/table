@@ -8,6 +8,7 @@ Flickable {
     clip: true
     contentHeight: height
     contentWidth: width
+    //transformOrigin: Item.Center
 
     Component.onCompleted: {
         Project.flickable = flickable
@@ -18,18 +19,20 @@ Flickable {
 
     property bool selected: false
     property var currentSelectImg: null
+    property bool selectMulti: false
 
     function setSelected(img) {
         for(var i=0; i<Project.flickableImage.length; i++) {
-            if(Project.flickableImage[i].obj && Project.flickableImage[i].obj !== img) {
+            if(Project.flickableImage[i].obj && Project.flickableImage[i].obj !== img && Project.flickableImage[i].obj.selected) {
                 Project.flickableImage[i].obj.selected = false;
             }
         }
 
+
         if(img) {
+            selected = true;
             currentSelectImg = img
             currentSelectImg.selected = true;
-            selected = true;
         } else {
             currentSelectImg = null;
             selected = false;
@@ -119,11 +122,14 @@ Flickable {
                 }
             }
 
-
             currentSelectImg = null;
             selected = false;
 
         }
+
+
+
     }
+
 
 }

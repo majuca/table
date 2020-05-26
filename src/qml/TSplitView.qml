@@ -27,6 +27,7 @@ SplitView {
                     onCurrentSelectImgChanged: {
 
                         if(currentSelectImg) {
+                            console.debug("kkkk")
                             imageForm.setCurrentFrameType(currentSelectImg.frameType);
                             imageForm.setCurrentFormat(currentSelectImg.format);
                             imageForm.setCurrentSize(currentSelectImg.size);
@@ -49,6 +50,8 @@ SplitView {
                     Button {
                         icon.name:qsTr("Delete")
                         icon.source: "../image/trash-solid.svg"
+                        icon.height: 16
+                        icon.width: 12
                         enabled: flickable.selected
                         onClicked: {
                             project.isModified = true;
@@ -67,6 +70,8 @@ SplitView {
                     Button {
                         icon.name:qsTr("Down")
                         icon.source: "../image/angle-double-down-solid.svg"
+                        icon.height: 16
+                        icon.width: 12
                         enabled: flickable.selected
 
                         onClicked: {
