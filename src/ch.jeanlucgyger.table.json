@@ -1,0 +1,20 @@
+{
+    "id": "ch.jeanlucgyger.table",
+    "branch": "master",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "5.14",
+    "sdk": "org.kde.Sdk",
+    "command": "table",
+    "tags": ["nightly"],
+    "desktop-file-name-suffix": " (Nightly)",
+    "finish-args": ["--share=ipc", "--socket=cups", "--socket=x11", "--socket=wayland", "--filesystem=host", "--share=network"],
+    "separate-locales": false,
+
+    "modules": [
+        {
+            "name": "table",
+            "buildsystem": "qmake",
+            "sources": [ { "type": "git", "url": "https://github.com/majuca/table.git" } ]
+        }
+    ]
+}

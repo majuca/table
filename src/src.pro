@@ -39,6 +39,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    ch.jeanlucgyger.table.json \
     table.desktop
 
 HEADERS += \
